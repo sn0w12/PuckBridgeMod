@@ -62,7 +62,7 @@ namespace PuckBridgeMod.Patches
                         username = __instance.Username.Value.ToString(),
                         oldState = oldState.ToString(),
                         newState = newState.ToString(),
-                        player = PlayerPatchHelpers.CreatePlayerSummary(__instance)
+                        player = PlayerPatchHelpers.CreateFullPlayerData(__instance)
                     };
 
                     PuckBridgeMod._instance.Client.SendPlayerData(stateChangeData);
@@ -111,22 +111,6 @@ namespace PuckBridgeMod.Patches
                     patreonLevel = player.PatreonLevel.Value,
                     adminLevel = player.AdminLevel.Value
                 }
-            };
-        }
-
-        public static object CreatePlayerSummary(Player player)
-        {
-            return new
-            {
-                clientId = player.OwnerClientId,
-                username = player.Username.Value.ToString(),
-                state = player.State.Value.ToString(),
-                team = player.Team.Value.ToString(),
-                role = player.Role.Value.ToString(),
-                number = player.Number.Value,
-                goals = player.Goals.Value,
-                assists = player.Assists.Value,
-                ping = player.Ping.Value
             };
         }
     }
